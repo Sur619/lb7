@@ -1,0 +1,124 @@
+/* Общий стиль */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #ffdd57;
+}
+
+/* Карточки */
+.card {
+    background: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: #343a40;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 15px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Кнопки */
+button {
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border: 2px solid #007bff;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: #007bff;
+    color: white;
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    border: 2px solid #6c757d;
+    background: transparent;
+}
+
+.btn-outline-secondary:hover {
+    background: #6c757d;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background: #f8f9fa;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    color: #6c757d;
+    border-top: 1px solid #e9ecef;
+}

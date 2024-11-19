@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Betting Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <h5 class="mb-3">Sports Categories</h5>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#">Soccer</a></li>
+                <li class="list-group-item"><a href="#">Basketball</a></li>
+                <li class="list-group-item"><a href="#">Tennis</a></li>
+                <li class="list-group-item"><a href="#">Hockey</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h5 class="mb-3">Live Matches</h5>
+            <div class="card mb-4">
+                <div class="card-header">
+                    Premier League - Soccer
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <p>Team A vs Team B</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <button class="btn btn-outline-primary">Win Team A</button>
+                            <button class="btn btn-outline-secondary">Draw</button>
+                            <button class="btn btn-outline-success">Win Team B</button>
+                        </div>
+                        <div class="col-md-2 text-end">
+                            <span class="badge bg-success">Live</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

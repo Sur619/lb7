@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Bets{% endblock %}
+
+{% block content %}
+<h2>Place Your Bet</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="outcome" class="form-label">Choose Outcome:</label>
+        <select class="form-select" id="outcome" name="outcome">
+            <option value="win">Win</option>
+            <option value="loss">Loss</option>
+            <option value="draw">Draw</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="amount" class="form-label">Bet Amount:</label>
+        <input type="number" class="form-control" id="amount" name="amount" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Place Bet</button>
+</form>
+{% endblock %}

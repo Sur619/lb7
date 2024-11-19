@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Your Profile</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.username }}</h5>
+        <p>Email: {{ user.email }}</p>
+        <p>Balance: <strong>$1000</strong> (Example)</p>
+        <a href="{% url 'bets' %}" class="btn btn-success">Go to Bets</a>
+    </div>
+</div>
+{% endblock %}
