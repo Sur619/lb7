@@ -1,28 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Betting System{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'base_styles.css' %}">
+    <title>{% block title %}Site{% endblock %}</title>
 </head>
-<body>
-    <header>
-        <div class="container navbar">
-            <h1>Betting System</h1>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
+<header>
+    <div class="container">
+        <h1>Betting System</h1>
+        <ul>
+            {% if user.is_authenticated %}
+                <!-- Если пользователь авторизован -->
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            {% else %}
+                <!-- Если пользователь не авторизован -->
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'register' %}">Register</a></li>
-            </ul>
-        </div>
-    </header>
-    {% block content %}
-    {% endblock %}
-    <footer>
-        <p>&copy; 2024 Betting System | All Rights Reserved</p>
-    </footer>
-</body>
-</html>
+            {% endif %}
+        </ul>
+    </div>
+</header>

@@ -9,6 +9,5 @@ urlpatterns = router.urls
 
 # Добавляем дополнительные маршруты
 urlpatterns += [
-    path('profile/', profile, name='profile'),  # Личный кабинет
     path('bets/', bets_page, name='bets'),      # Ставки
 ]

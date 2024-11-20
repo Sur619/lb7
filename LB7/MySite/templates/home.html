@@ -1,43 +1,60 @@
-{% extends 'base.html' %}
-{% load static %}
 
-{% block title %}Betting Dashboard{% endblock %}
-
-{% block content %}
-<div class="container mt-5">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'home_styles.css' %}">
+</head>
+<div class="container mt-4">
+    <div class="container">
+        <h1>Betting System</h1>
+        <ul>
+            {% if user.is_authenticated %}
+            <!-- Если пользователь авторизован -->
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">
+                        Logout
+                    </button>
+                </form>
+            </li>
+            {% else %}
+            <!-- Если пользователь не авторизован -->
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </div>
     <div class="row">
+        <!-- Sidebar -->
         <div class="col-md-3">
-            <h5 class="mb-3">Sports Categories</h5>
-            <ul class="list-group">
-                <li class="list-group-item"><a href="#">Soccer</a></li>
-                <li class="list-group-item"><a href="#">Basketball</a></li>
-                <li class="list-group-item"><a href="#">Tennis</a></li>
-                <li class="list-group-item"><a href="#">Hockey</a></li>
-            </ul>
+            <div class="sports-categories">
+                <h5>Sports Categories</h5>
+                <ul>
+                    <li><a href="#">Soccer</a></li>
+                    <li><a href="#">Basketball</a></li>
+                    <li><a href="#">Tennis</a></li>
+                    <li><a href="#">Hockey</a></li>
+                </ul>
+            </div>
         </div>
+        <!-- Matches -->
         <div class="col-md-9">
-            <h5 class="mb-3">Live Matches</h5>
-            <div class="card mb-4">
-                <div class="card-header">
+            <div class="match-card">
+                <div class="match-card-header">
                     Premier League - Soccer
                 </div>
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-md-4">
-                            <p>Team A vs Team B</p>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <button class="btn btn-outline-primary">Win Team A</button>
-                            <button class="btn btn-outline-secondary">Draw</button>
-                            <button class="btn btn-outline-success">Win Team B</button>
-                        </div>
-                        <div class="col-md-2 text-end">
-                            <span class="badge bg-success">Live</span>
-                        </div>
+                <div class="match-card-body">
+                    <div class="team">Team A vs Team B</div>
+                    <div>
+                        <button class="btn">Win Team A</button>
+                        <button class="btn">Draw</button>
+                        <button class="btn">Win Team B</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
-{% endblock %}

@@ -1,124 +1,102 @@
-/* Общий стиль */
-body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    color: #212529;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    color: white;
-    padding: 15px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.navbar ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.navbar ul li {
-    margin-left: 20px;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.navbar ul li a:hover {
-    color: #ffdd57;
-}
-
-/* Карточки */
+/* Регистрация */
 .card {
-    background: white;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    margin-top: 20px;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    background-color: #2d2d30;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
 .card-header {
-    background: #343a40;
+    background-color: #1e90ff;
     color: white;
-    border-radius: 8px 8px 0 0;
-    padding: 10px 15px;
-    font-size: 1.25rem;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5rem;
     font-weight: bold;
+}
+
+.card-header p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #f0f0f0;
 }
 
 .card-body {
-    padding: 15px;
+    padding: 20px;
 }
 
-/* Кнопки */
-button {
+.form-label {
+    font-weight: bold;
+    color: #e4e4e4;
+    margin-bottom: 5px;
+    display: block; /* Убедимся, что метка на отдельной строке */
+}
+
+.form-control {
+    background-color: #1a1a1d;
+    color: #e4e4e4;
+    border: 1px solid #3e3e42;
+    border-radius: 5px;
+    padding: 10px;
+    height: 45px; /* Фиксированная высота */
+    width: 100%; /* Полная ширина */
+    box-sizing: border-box; /* Учитывает границы */
+    font-size: 1rem; /* Размер текста */
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1e90ff;
+    box-shadow: 0 0 5px #1e90ff;
+}
+
+.form-check-label {
+    color: #e4e4e4;
+    font-size: 0.85rem;
+}
+
+.form-check-label a {
+    text-decoration: none;
+    color: #1e90ff;
+}
+
+.form-check-label a:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-color: #28a745;
     border: none;
-    border-radius: 50px;
+    color: white;
     padding: 10px 20px;
     font-size: 1rem;
-    font-weight: bold;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Полная ширина кнопки */
 }
 
-button:hover {
-    transform: scale(1.05);
+.btn-primary:hover {
+    background-color: #218838;
 }
 
-.btn-outline-primary {
-    color: #007bff;
-    border: 2px solid #007bff;
-    background: transparent;
-}
-
-.btn-outline-primary:hover {
-    background: #007bff;
-    color: white;
-}
-
-.btn-outline-secondary {
-    color: #6c757d;
-    border: 2px solid #6c757d;
-    background: transparent;
-}
-
-.btn-outline-secondary:hover {
-    background: #6c757d;
-    color: white;
-}
-
-/* Footer */
-footer {
-    background: #f8f9fa;
+.card-footer {
     text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
-    color: #6c757d;
-    border-top: 1px solid #e9ecef;
+    padding: 15px;
+    background-color: #2d2d30;
+}
+
+.card-footer a {
+    color: #1e90ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Дополнительный стиль для отступов между группами */
+.form-group {
+    margin-bottom: 15px;
 }
