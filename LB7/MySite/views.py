@@ -4,11 +4,13 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 
 from .serializer import *
 from rest_framework.permissions import IsAuthenticated
+from .models import SportsCategory, Vote, Match
+from django.core.paginator import Paginator
 
 
 class BetViewSet(ModelViewSet):
@@ -24,12 +26,20 @@ class BetViewSet(ModelViewSet):
 
 
 def home(request):
-    return render(request, 'home.html')
+    sports_categories = SportsCategory.objects.distinct()[:4]  # Отображать только 1 категорию
+    return render(request, 'home.html', {'sports_categories': sports_categories})
 
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html', {'user': request.user})
+    last_bet = request.user.bets.last()  # Последняя ставка пользователя
+    last_vote = request.user.votes.last()  # Последнее голосование пользователя
+    return render(request, 'profile.html', {
+        'user': request.user,
+        'last_bet': last_bet,
+        'last_vote': last_vote,
+    })
+
 
 
 @login_required
@@ -80,3 +90,35 @@ def edit_profile(request):
         messages.success(request, 'Profile updated successfully.')
         return redirect('profile')
     return render(request, 'edit_profile.html', {'user': request.user})
+
+
+@login_required
+def vote(request, category_id):
+    category = get_object_or_404(SportsCategory, id=category_id)
+    match = Match.objects.filter(category=category).first()
+
+    if request.method == 'POST':
+        team = request.POST.get('team')
+        amount = request.POST.get('amount')  # Сумма ставки, если нужно
+        outcome = request.POST.get('outcome')  # Исход ставки, если требуется
+
+        # Сохранение ставки
+        Bet.objects.create(
+            user=request.user,
+            outcome=outcome,
+            amount=amount
+        )
+
+        messages.success(request, f"You placed a bet on {team} in {category.name}.")
+        return redirect('profile')
+
+    return render(request, 'vote.html', {'category': category, 'match': match})
+
+
+@login_required
+def history(request):
+    bets = Bet.objects.filter(user=request.user).order_by('-created_at')  # Сортировка по дате
+    paginator = Paginator(bets, 3)  # Пагинация: 10 ставок на страницу
+    page_number = request.GET.get('page', 1)  # Используем значение по умолчанию (1), если параметр отсутствует
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'history.html', {'page_obj': page_obj})

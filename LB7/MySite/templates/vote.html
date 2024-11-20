@@ -1,0 +1,25 @@
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'home_styles.css' %}">
+</head>
+<div class="container mt-5">
+    <h2>Vote for {{ category.name }}</h2>
+    <div class="match-card">
+        <div class="match-card-header">
+            {{ category.name }} Match
+        </div>
+        <div class="match-card-body">
+            <div class="team">{{ match.team_a }} vs {{ match.team_b }}</div>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="outcome" value="win">
+                <input type="number" name="amount" placeholder="Enter amount" required>
+                <button type="submit" name="team" value="Team A">Bet on Team A</button>
+                <button type="submit" name="team" value="Draw">Bet on Draw</button>
+                <button type="submit" name="team" value="Team B">Bet on Team B</button>
+            </form>
+
+        </div>
+    </div>
+</div>

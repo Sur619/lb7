@@ -1,4 +1,3 @@
-
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -32,29 +31,19 @@
             <div class="sports-categories">
                 <h5>Sports Categories</h5>
                 <ul>
-                    <li><a href="#">Soccer</a></li>
-                    <li><a href="#">Basketball</a></li>
-                    <li><a href="#">Tennis</a></li>
-                    <li><a href="#">Hockey</a></li>
+                    {% for category in sports_categories %}
+                    <li><a href="{% url 'vote' category.id %}">{{ category.name }}</a></li>
+                    {% empty %}
+                    <li>No categories available</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
         <!-- Matches -->
         <div class="col-md-9">
             <div class="match-card">
-                <div class="match-card-header">
-                    Premier League - Soccer
-                </div>
-                <div class="match-card-body">
-                    <div class="team">Team A vs Team B</div>
-                    <div>
-                        <button class="btn">Win Team A</button>
-                        <button class="btn">Draw</button>
-                        <button class="btn">Win Team B</button>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
-
 </div>

@@ -1,0 +1,52 @@
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'profile_styles.css' %}">
+</head>
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h3>Bet History</h3>
+        </div>
+        <div class="card-body">
+            {% if page_obj %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Outcome</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bet in page_obj %}
+                        <tr>
+                            <td>{{ bet.outcome }}</td>
+                            <td>${{ bet.amount }}</td>
+                            <td>{{ bet.created_at|date:"F j, Y, g:i a" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No bets available.</p>
+            {% endif %}
+        </div>
+        <div class="card-footer text-center">
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-secondary">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary">Previous</a>
+                {% endif %}
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary">Last &raquo;</a>
+                {% endif %}
+            </div>
+            <a href="{% url 'profile' %}" class="btn btn-primary mt-3">Back to Profile</a>
+        </div>
+    </div>
+</div>

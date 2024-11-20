@@ -18,8 +18,19 @@
                         <a href="{% url 'home' %}" class="btn btn-secondary">Main Menu</a>
                         <a href="{% url 'edit_profile' %}" class="btn btn-info">Edit Profile</a>
                         <a href="#" class="btn btn-warning">Top Up Balance</a>
-                        <a href="#" class="btn btn-dark">Transaction History</a>
+                        <a href="{% url 'history' %}" class="btn btn-dark">History</a>
+
                     </div>
+                    <h3>Voting History</h3>
+                    <ul>
+                        {% for vote in user.votes.all %}
+                        <li>
+                            <strong>Category:</strong> {{ vote.category.name }} |
+                            <strong>Team:</strong> {{ vote.team }} |
+                            <strong>Date:</strong> {{ vote.created_at }}
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div class="card-footer">
                     Last login: {{ user.last_login|date:"F j, Y, g:i a" }}
